@@ -1,0 +1,57 @@
+package escribenombrealt;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ *Programa que pide un nombre y altura y lo escribe en un fichero. Hacer 
+ * 3 veces. Volver a ejecutar para comprobar si añade datos al fichero
+ * en vez de crear un fichero nuevo en cada ejecución.
+ * @author aga
+ */
+public class EscribeNombreAlt {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        //Identificación del fichero físico
+        String nombreFichero = "C:/Users/aga/Documents/ficheroEjemplo.txt";
+        
+        String cr = System.lineSeparator();
+      
+        String nombre = " ";
+        int altura;
+        String numCadena = " ";
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        try {
+            FileWriter ficherito = new FileWriter(nombreFichero, true); //crea nuevo
+            
+            ficherito.write("PRUEBA DE ESCRITURA DE TEXTO" + cr);
+
+            for (int i = 0; i < 3; i++) {
+                
+                System.out.println("Escribe tu nombre: ");
+                nombre=entrada.next();             
+                ficherito.write(nombre + "-");
+                
+                System.out.println("Escribe tu altura: ");
+                altura=entrada.nextInt();
+                numCadena= Integer.toString(altura);//conversión de int a String
+                ficherito.write(numCadena + cr);
+            }
+            ficherito.write(cr);
+            
+            ficherito.close();
+            System.out.print("CERRAMOS EL FICHERO");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+}
